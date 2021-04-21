@@ -1,5 +1,7 @@
-$.getJSON('./assests/in.json', function(data) {
-    var cityList = data.map(val => val.name);
+var cityList;
+var params = '';
+
+function buildTable(callback) {
     cityList.forEach(el => {
         var rowHtml =
             '<th scope="row">' +
@@ -7,8 +9,7 @@ $.getJSON('./assests/in.json', function(data) {
             '</div>' +
             '</th>' +
             '<td>' +
-            '<a class="city-name" href="' +
-            'https://twitter.com/search?q=verified+' + el + '+%28bed+OR+beds+OR+oxygen+OR+ventilator+OR+ventilators+OR+fabiflu%29+-%22not+verified%22+-%22unverified%22+-%22needed%22+-%22required%22&f=live' +
+            '<a class="city-name" href="#' +
             '">' +
             '<span>' + el + '</span>'
         '</a>' +
@@ -17,9 +18,41 @@ $.getJSON('./assests/in.json', function(data) {
         row.innerHTML = rowHtml;
         $(".table-body").append(row);
     });
+    if (callback != null) callback();
+}
+
+function buildParamString() {
+    params = '';
+    $(".quick-links .checkbox input").each(function() {
+        if ($(this).prop("checked")) {
+            if (params === '') {
+                params = $(this).attr("val-attr");
+            } else {
+                params += "+OR+" + $(this).attr("val-attr");
+            }
+        }
+    });
+}
+
+function redirect() {
+    $(".city-name").click(function(event) {
+        window.location = 'https://twitter.com/search?q=verified+%28+' + $(this).text() + '+%28' + params + '%29+-%22not+verified%22+-%22unverified%22+-%22needed%22+-%22required%22&f=live';
+    });
+}
+
+$.getJSON('./assests/in.json', function(data) {
+    cityList = data.map(val => val.name);
+    buildParamString();
+    buildTable(redirect);
     $("#table").DataTable({
         "paging": false,
         "ordering": false,
         "info": false
+    });
+});
+
+$(document).ready(function() {
+    $(".quick-links .checkbox input").change(function() {
+        buildParamString();
     });
 });
