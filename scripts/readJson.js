@@ -11,9 +11,9 @@ function buildTable(callback) {
             '<td>' +
             '<a class="city-name" href="#' +
             '">' +
-            '<span>' + el + '</span>'
-        '</a>' +
-        '</td>';
+            '<span>' + el + '</span>' +
+            '</a>' +
+            '</td>';
         var row = document.createElement('tr');
         row.innerHTML = rowHtml;
         $(".table-body").append(row);
