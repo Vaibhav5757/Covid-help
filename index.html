@@ -29,6 +29,13 @@
             min-width: 1em;
             margin-right: 0.5em;
         }
+        
+        .spinner {
+            margin: 0 auto;
+            width: 15rem;
+            height: 15rem;
+            display: block;
+        }
     </style>
     <!-- Load cities from json file -->
     <script src="assests/in.json"></script>
@@ -107,7 +114,9 @@
             </span>
         </div>
     </div>
-    <table class="table table-striped table-bordered mt-3" id="table">
+    <div class="spinner spinner-grow text-danger" role="status">
+    </div>
+    <table class="table table-striped table-bordered mt-3 d-none" id="table">
         <thead>
             <tr>
                 <th scope="col">#</th>

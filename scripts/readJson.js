@@ -53,6 +53,8 @@ $.getJSON('./assests/in.json', function(data) {
         "ordering": false,
         "info": false
     });
+    $("#table").removeClass('d-none');
+    $(".spinner").addClass('d-none');
 });
 
 $(document).ready(function() {
