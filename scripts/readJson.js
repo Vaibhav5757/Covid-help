@@ -59,7 +59,10 @@ $.getJSON('./assests/in.json', function(data) {
         "lengthMenu": numberOfRows(),
         "bLengthChange": window.outerWidth > 767,
         "paging": true,
-        "pagingType": "simple"
+        "pagingType": "simple",
+        "language": {
+            "search": "Enter City: "
+        }
     });
     $("#table").removeClass('d-none');
     $(".spinner").addClass('d-none');
