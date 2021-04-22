@@ -45,14 +45,21 @@ function redirect() {
     });
 }
 
+function numberOfRows() {
+    return window.outerWidth < 768 ? [20] : [20, 50, 75, 100]
+}
+
 $.getJSON('./assests/in.json', function(data) {
     cityList = data.map(val => val.name);
     buildParamString();
     buildTable(redirect);
     $("#table").DataTable({
-        "paging": false,
         "ordering": false,
-        "info": false
+        "info": false,
+        "lengthMenu": numberOfRows(),
+        "bLengthChange": window.outerWidth > 767,
+        "paging": true,
+        "pagingType": "simple"
     });
     $("#table").removeClass('d-none');
     $(".spinner").addClass('d-none');
