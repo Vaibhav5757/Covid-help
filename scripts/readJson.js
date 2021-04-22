@@ -40,7 +40,8 @@ function verifiedCheck() {
 
 function redirect() {
     $(".city-name").click(function(event) {
-        window.location = 'https://twitter.com/search?q=' + verifiedCheck() + '+%28+' + $(this).text() + '+%28' + params + '%29+-%22not+verified%22+-%22unverified%22+-%22needed%22+-%22required%22&f=live';
+        var url = 'https://twitter.com/search?q=' + verifiedCheck() + '+%28+' + $(this).text() + '+%28' + params + '%29+-%22not+verified%22+-%22unverified%22+-%22needed%22+-%22required%22&f=live';
+        window.open(url, "_blank");
     });
 }
 
