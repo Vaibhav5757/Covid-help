@@ -39,7 +39,7 @@ function verifiedCheck() {
 }
 
 function getAdditionalSearchTerms() {
-    return $("#additional-search").val().replace(" ", "+%28");
+    return $("#additional-search").val().replace(" ", "+%28") + "+%28";
 }
 
 function redirect() {
