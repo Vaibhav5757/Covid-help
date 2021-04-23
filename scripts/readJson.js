@@ -68,7 +68,7 @@ $.getJSON('./assests/in.json', function(data) {
         "paging": true,
         "pagingType": "simple",
         "language": {
-            "search": "Enter City or State: ",
+            "search": "Enter City/State: ",
             // "searchPlaceholder": ""
         },
         "columnDefs": [{
