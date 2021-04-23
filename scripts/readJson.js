@@ -11,9 +11,12 @@ function buildTable(callback) {
             '<td>' +
             '<a class="city-name" href="#' +
             '">' +
-            '<span>' + el + '</span>' +
+            '<span>' + el.name + '</span>' +
             '</a>' +
-            '</td>';
+            '</td>' +
+            "<td>" +
+            el.state +
+            "</td>";
         var row = document.createElement('tr');
         row.innerHTML = rowHtml;
         $(".table-body").append(row);
@@ -54,7 +57,7 @@ function numberOfRows() {
 }
 
 $.getJSON('./assests/in.json', function(data) {
-    cityList = data.map(val => val.name);
+    cityList = data;
     buildParamString();
     buildTable(redirect);
     $("#table").DataTable({
@@ -65,8 +68,14 @@ $.getJSON('./assests/in.json', function(data) {
         "paging": true,
         "pagingType": "simple",
         "language": {
-            "search": "Enter City: "
-        }
+            "search": "Enter City or State: ",
+            // "searchPlaceholder": ""
+        },
+        "columnDefs": [{
+            "targets": [2],
+            "visible": false
+        }],
+        "bAutoWidth": false
     });
     $("#table").removeClass('d-none');
     $(".spinner").addClass('d-none');
