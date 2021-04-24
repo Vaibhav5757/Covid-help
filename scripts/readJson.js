@@ -42,7 +42,7 @@ function verifiedCheck() {
 }
 
 function getAdditionalSearchTerms() {
-    return $("#additional-search").val().replace(" ", "+%20");
+    return $("#additional-search").val().replace(" ", "+%20") + " ";
 }
 
 function redirect() {
